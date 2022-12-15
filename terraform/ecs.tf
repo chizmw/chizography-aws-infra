@@ -21,10 +21,13 @@ resource "aws_ecs_task_definition" "nginx" {
   {
     "name": "nginx",
     "image": "nginx:latest",
+    "memory": 256,
+    "cpu": 256,
     "portMappings": [
       {
         "containerPort": 80,
-        "hostPort": 80
+        "hostPort": 80,
+        "protocol": "tcp"
       }
     ],
     "essential": true
