@@ -35,3 +35,17 @@ resource "aws_ecs_task_definition" "nginx" {
 ]
 DEFINITION
 }
+
+# create ECR for any docker images we use in the websites
+resource "aws_ecr_repository" "websites" {
+  name                 = "websites"
+  image_tag_mutability = "IMMUTABLE"
+
+  image_scanning_configuration {
+    scan_on_push = true
+  }
+
+  encryption_configuration {
+    encryption_type = "KMS"
+  }
+}
